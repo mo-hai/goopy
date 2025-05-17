@@ -1,5 +1,60 @@
 # Google API Tool Documentation
 
+A Python package for easy interaction with Google Drive, Sheets, and Slides APIs.
+
+## Installation
+
+You can install the package directly from PyPI:
+
+```bash
+pip install goopy
+```
+
+Or install from source:
+
+```bash
+git clone https://github.com/yourusername/goopy.git
+cd goopy
+pip install -e .
+```
+
+## Package Structure
+
+```text
+goopy/
+├── src/
+│   ├── BaseGoogleServiceAPI.py (Base class for Google API services)
+│   ├── DriveServiceAPI.py (Google Drive API wrapper)
+│   ├── SheetServiceAPI.py (Google Sheets API wrapper)
+│   └── SlidesServiceApi.py (Google Slides API wrapper)
+├── examples/
+│   └── examples.py (Example usage of the API wrappers)
+├── requirements.txt
+└── README.md
+```
+
+## Usage
+
+```python
+from goopy import DriveService, SheetsService, SlidesService
+
+# Initialize services
+drive = DriveService()
+sheets = SheetsService()
+slides = SlidesService()
+
+# Use the services
+file_id = drive.create_file(
+    file_name="My Document", 
+    file_type="document",
+    folder_link="https://drive.google.com/drive/folders/your-folder-id"
+)
+```
+
+For more detailed examples, see the `examples` directory.
+
+## Authentication with google services
+
 This guide explains how to set up and use the Google API tool with proper authentication.
 
 ## Prerequisites

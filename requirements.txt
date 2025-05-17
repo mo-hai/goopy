@@ -1,4 +1,3 @@
 google
 google-api-python-client
-python-dotenv
 polars
