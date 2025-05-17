@@ -3,7 +3,7 @@ import io
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaIoBaseDownload
-from src.BaseGoogleServiceAPI import BaseService, logger
+from .BaseGoogleServiceAPI import BaseService, logger
 import logging
 
 logging.basicConfig(level=logging.INFO)

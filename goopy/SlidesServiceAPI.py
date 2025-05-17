@@ -1,6 +1,6 @@
 import re
 from collections import defaultdict
-from src.BaseGoogleServiceAPI import BaseService, logger
+from .BaseGoogleServiceAPI import BaseService, logger
 import logging
 
 logging.basicConfig(level=logging.INFO)

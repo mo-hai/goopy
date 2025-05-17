@@ -36,14 +36,10 @@ goopy/
 ## Usage
 
 ```python
-from goopy import DriveService, SheetsService, SlidesService
+from goopy import DriveService
 
-# Initialize services
 drive = DriveService()
-sheets = SheetsService()
-slides = SlidesService()
 
-# Use the services
 file_id = drive.create_file(
     file_name="My Document", 
     file_type="document",

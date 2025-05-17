@@ -1,5 +1,5 @@
 import polars as pl
-from src.BaseGoogleServiceAPI import BaseService, logger
+from .BaseGoogleServiceAPI import BaseService, logger
 import logging
 
 logging.basicConfig(level=logging.INFO)
