@@ -8,9 +8,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('googpy')
 
 
-GOOGLE_APPLICATION_CREDENTIALS = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-
-
 class BaseService(object):
     """
     Base class for Google API services.
@@ -18,15 +15,31 @@ class BaseService(object):
     """
 
     def __init__(self, service_account_file: str = None):
+        self.service_account_file = self._get_credentials(service_account_file)
+        self.credentials = service_account.Credentials.from_service_account_file(self.service_account_file, scopes=self.scopes)
+        self.service = self._build()
+    
+    def _get_credentials(self, service_account_file):
+        """
+        Returns the credentials used to authenticate with the Google API.
+        Returns:
+            google.oauth2.service_account.Credentials: The credentials used to authenticate with the Google API.
+        """
         if service_account_file is None:
-            service_account_file = GOOGLE_APPLICATION_CREDENTIALS
+            service_account_file = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
         if service_account_file is None:
             raise Exception(
                 "The service_account_file option must be set either by passing service_account_file to the client or by setting the GOOGLE_APPLICATION_CREDENTIALS environment variable"
             )
-        self.SERVICE_ACCOUNT_FILE = service_account_file
-        self.credentials = service_account.Credentials.from_service_account_file(self.SERVICE_ACCOUNT_FILE, scopes=self.scopes)
-        self.service = self._build()
+        
+        if not os.path.exists(service_account_file):
+            logger.error(f"service_account_file does not exist.")
+        elif not os.path.isfile(service_account_file):
+            logger.error(f"service_account_file is not a file.")
+        elif not os.access(service_account_file, os.R_OK):
+            logger.error(f"service_account_file cannot be read.")
+        
+        return service_account_file
 
     def _build(self):
         service = build(self.service_name, self.version, credentials=self.credentials)
