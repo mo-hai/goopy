@@ -2,6 +2,11 @@
 
 A Python package for easy interaction with Google Drive, Sheets, and Slides APIs.
 
+## Prerequisites
+- GCP (Google Cloud Platform) account
+- GCP project with the Google Drive API enabled
+- Service account with enambled permissions for selected Google Drive or Google Drive Folder
+
 ## Installation
 
 You can install the package directly from PyPI:
@@ -49,15 +54,10 @@ file_id = drive.create_file(
 
 For more detailed examples, see the `examples` directory.
 
-## Authentication with google services
+
+# Authentication with google services
 
 This guide explains how to set up and use the Google API tool with proper authentication.
-
-## Prerequisites
-
-- Google account
-- Access to Google Cloud Console
-- Basic understanding of API permissions
 
 ## Setting Up Google API Credentials
 
